@@ -13,7 +13,8 @@ curl "${API}${URL_PATH}" \
       "date": "'"${DATE}"'",
       "startTime": "'"${START}"'",
       "endTime": "'"${END}"'",
-      "eventType": "'"${TYPE}"'"
+      "eventType": "'"${TYPE}"'",
+      "location": "'"${LOCATION}"'"
     }
   }'
 
