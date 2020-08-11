@@ -1,203 +1,43 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# express-api-template
+# Back in 10!
+Back in 10 is a client application that emphasises wellness and personal and mental health. The application is based on creating calendar events to remind the user to take a break during a hectic work schedule. Maintaining an appropriate work-life balance is one of the most important practices for improving both physical and mental health, as well as increasing productivity while at work.
 
-A template for starting projects with `express` as an API. Includes
-authentication and common middlewares.
+This application will generate a calendar unique to each user, which will schedule wellness activities within their day-to-day tasks. In a future version, Back in 10 will be able to sync with a user's personal or work calendar, such as a Google or Outlook Calendar, to be able to schedule events within an existing calendar. It is important to make time for breaks, and often during a busy work day, breaks and wellness activities will be the first activity postponed to make room for more productivity. While that seems like a good idea in the short term, it will actually reduce productivity over the course of the day.
 
-## Installation
+## Functionality
 
-1. [Download](../../archive/master.zip) this template.
-1. Move the .zip file to your `sei/projects/` directory and Unzip it (creating a
-   folder) -- **NOTE:** if the folder was already unzipped, use the `mv` command
-   line to move it to the `sei/projects/` directory.
-1. Rename the directory from express-api-template -> your-app-name.
-1. Empty [`README.md`](README.md) and fill with your own content.
-1. Move into the new project and `git init`.
-1. Replace all instances of `'express-api-template'` with your app name.
-1. Install dependencies with `npm install`.
-1. Ensure that you have `nodemon` installed by running `npm install -g nodemon`.
-1. Ensure the API is functioning properly by running `npm run server`.
-1. Once everything is working, make an initial commit.
-1. Follow the steps in [express-api-deployment-guide](https://git.generalassemb.ly/ga-wdi-boston/express-api-deployment-guide)
+Back in 10 allows a user to Crete, Read, Update and Delete a calandar event with a date, time (start and end time), type of activity, and an optional location. The current version allows the user to input an activity of their choosing, however the next version will provide a pre-created dropdown list of activities to choose from, as well as a blank input field to generate a custom option. Version two will also feature a live calendar in which to input events, rather than a list-style display. Future versions will also feature a random activity generator, to motivate an individual to try new or different activities from their typical routine.
 
-## Structure
+## Additional Stretch Goals
+Users will be able to sync their existing calendar applications (like Google, Apple or Outlook Calendars), to be able to input wellness activities within their personal or work schedules.
+A user will be allowed to invite other users to their wellness activities, similar to a meeting or appointment request in an Outlook calendar.
 
-Dependencies are stored in [`package.json`](package.json).
+### Live Links
+Deployed Site: Not yet deployed
+Deployed API: [Heroku](https://protected-refuge-08536.herokuapp.com)
 
-The most important file for understanding the structure of the template is
-`server.js`. This is where the actual Express `app` object is created, where
-the middlewares and routes are registered, and more. To register a routefile,
-follow the pattern established here with `exampleRoutes` and `userRoutes`. If
-you want to add any middlewares to your app, do that here.
+API Repository: [GitHub-Wellness-API](https://github.com/kbini28/wellness-api)
+Client Repository: [GitHub-Wellness-Client](https://github.com/kbini28/wellness-client)
 
-The `app` directory contains models and route files. Models are simply Mongoose
-models. To create your own, follow the patterns established in
-`app/models/example.js`. Route files are somewhat similar to controllers in
-Rails, but they cover more functionality, including serialization and deciding
-which HTTP verbs to accept and what to do with them.
+### Technologies Used (API)
+Express.js, MongoDB, Mongoose, Javascript
 
-The `config` directory holds just `db.js`, which is where you specify the name
-and URL of your database.
+### Entity Relationship Diagram
 
-The `lib` directory is for code that will be used in other places in the
-application. The token authentication code is stored in `lib/auth.js`. The
-other files in `lib` deal with error handling. `custom_errors.js` is where all
-the different custom classes of errors are created. If you need some other kind
-of error message, you can add it here. There are also some functions defined
-here that are used elsewhere to check for errors. `lib/error_handler.js` is a
-function that will be used in all your `.catch`es. It catches errors, and sets
-the response status code based on what type of error got thrown.
+### Route Catalog
+**Methods Used**
+  - GET
+  - POST
+  - PATCH
+  - DELETE
 
-You probably will only need to interact with files in `app/models`,
-`app/routes`, and `server.js`. You'll need to edit `db/config.js` just once,
-to change the name of your app.
+**Paths Used**
+  - /wellnessEvents
+  - /wellnessEvents/:id
+  - /sign-up
+  - /sign-in
+  - /change-password
+  - /sign-out
 
-## Tasks
-
-Instead of `grunt`, this template uses `npm` as a task runner. This is more
-conventional for modern Express apps, and it's handy because we'll definitely
-use `npm` anyway. These are the commands available:
-
-| Command                | Effect                                                                                                      |
-|------------------------|-------------------------------------------------------------------------------------------------------------|
-| `npm run server`       | Starts a development server with `nodemon` that automatically refreshes when you change something.                                                                                         |
-| `npm test`             | Runs automated tests.                                                                                       |
-| `npm run debug-server` | Starts the server in debug mode, which will print lots of extra info about what's happening inside the app. |
-
-## API
-
-Use this as the basis for your own API documentation. Add a new third-level
-heading for your custom entities, and follow the pattern provided for the
-built-in user authentication documentation.
-
-Scripts are included in [`curl-scripts`](curl-scripts) to test built-in actions.
-Add your own scripts to test your custom API.
-
-### Authentication
-
-| Verb   | URI Pattern            | Controller#Action |
-|--------|------------------------|-------------------|
-| POST   | `/sign-up`             | `users#signup`    |
-| POST   | `/sign-in`             | `users#signin`    |
-| PATCH  | `/change-password/` | `users#changepw`  |
-| DELETE | `/sign-out/`        | `users#signout`   |
-
-#### POST /sign-up
-
-Request:
-
-```sh
-curl --include --request POST http://localhost:4741/sign-up \
-  --header "Content-Type: application/json" \
-  --data '{
-    "credentials": {
-      "email": "an@example.email",
-      "password": "an example password",
-      "password_confirmation": "an example password"
-    }
-  }'
-```
-
-```sh
-curl-scripts/sign-up.sh
-```
-
-Response:
-
-```md
-HTTP/1.1 201 Created
-Content-Type: application/json; charset=utf-8
-
-{
-  "user": {
-    "id": 1,
-    "email": "an@example.email"
-  }
-}
-```
-
-#### POST /sign-in
-
-Request:
-
-```sh
-curl --include --request POST http://localhost:4741/sign-in \
-  --header "Content-Type: application/json" \
-  --data '{
-    "credentials": {
-      "email": "an@example.email",
-      "password": "an example password"
-    }
-  }'
-```
-
-```sh
-curl-scripts/sign-in.sh
-```
-
-Response:
-
-```md
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-
-{
-  "user": {
-    "id": 1,
-    "email": "an@example.email",
-    "token": "33ad6372f795694b333ec5f329ebeaaa"
-  }
-}
-```
-
-#### PATCH /change-password/
-
-Request:
-
-```sh
-curl --include --request PATCH http://localhost:4741/change-password/ \
-  --header "Authorization: Token token=$TOKEN" \
-  --header "Content-Type: application/json" \
-  --data '{
-    "passwords": {
-      "old": "an example password",
-      "new": "super sekrit"
-    }
-  }'
-```
-
-```sh
-TOKEN=33ad6372f795694b333ec5f329ebeaaa curl-scripts/change-password.sh
-```
-
-Response:
-
-```md
-HTTP/1.1 204 No Content
-```
-
-#### DELETE /sign-out/
-
-Request:
-
-```sh
-curl --include --request DELETE http://localhost:4741/sign-out/ \
-  --header "Authorization: Token token=$TOKEN"
-```
-
-```sh
-TOKEN=33ad6372f795694b333ec5f329ebeaaa curl-scripts/sign-out.sh
-```
-
-Response:
-
-```md
-HTTP/1.1 204 No Content
-```
-
-## [License](LICENSE)
-
-1. All content is licensed under a CC­BY­NC­SA 4.0 license.
-1. All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+## Unsolved Problems
+Ending on a high note, I fell short on a few areas that I had hoped to complete in Version 1. I was not able to get the Update form to populate with existing data from the event. Also the calendar library/catalog from React was not finished in time. Obviously styling was not in the forefront either, as I wanted to try to push myself to complete the calendar first. One other thing I wanted to complete was to populate ONLY the owner's events to their calendar. That may be the most important feature to fix for the next version.
