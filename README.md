@@ -13,7 +13,7 @@ Users will be able to sync their existing calendar applications (like Google, Ap
 A user will be allowed to invite other users to their wellness activities, similar to a meeting or appointment request in an Outlook calendar.
 
 ### Live Links
-Deployed Site: Not yet deployed
+Deployed Site: [Back in 10!](https://kbini28.github.io/wellness-client/)
 Deployed API: [Heroku](https://protected-refuge-08536.herokuapp.com)
 
 API Repository: [GitHub-Wellness-API](https://github.com/kbini28/wellness-api)
